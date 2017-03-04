@@ -1,4 +1,4 @@
-package com.niit.quickdealsbackend.model;
+package com.niit.quickdeals.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

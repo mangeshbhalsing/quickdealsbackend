@@ -10,20 +10,18 @@
   <name>quickdealsbackend</name>
   <url>http://maven.apache.org</url>
 
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
+ 
+ 
 
   <dependencies>
-  
   <!-- https://mvnrepository.com/artifact/org.slf4j/slf4j-api -->
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-api</artifactId>
     <version>1.7.24</version>
 </dependency>
-  
-  <!-- https://mvnrepository.com/artifact/junit/junit -->
+
+<!-- https://mvnrepository.com/artifact/junit/junit -->
 <dependency>
     <groupId>junit</groupId>
     <artifactId>junit</artifactId>
@@ -97,7 +95,7 @@
 <dependency>
     <groupId>org.hibernate</groupId>
     <artifactId>hibernate-validator</artifactId>
-    <version>5.3.4.Final</version>
+    <version>5.4.0.Final</version>
 </dependency>
 
 <!-- https://mvnrepository.com/artifact/javax.el/javax.el-api -->
@@ -107,12 +105,8 @@
     <version>3.0.0</version>
 </dependency>
 
-   	<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-webmvc</artifactId>
-			<version>4.3.6.RELEASE</version>
-		</dependency>
-		
-		
+
+
+   
   </dependencies>
 </project>

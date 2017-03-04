@@ -2,14 +2,18 @@ package com.niit.quickdeals.dao.impl;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.niit.quickdeals.dao.CategoryDAO;
-import com.niit.quickdealsbackend.model.Category;
+import com.niit.quickdeals.model.Category;
 
-@Repository("CategoryDAO")
+
+@Transactional
+@Repository("categoryDAO")
 public class CategoryDAOimpl  implements CategoryDAO{
 	
 	

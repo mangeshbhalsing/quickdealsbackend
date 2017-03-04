@@ -2,7 +2,7 @@ package com.niit.quickdealsbackend;
 
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import com.niit.quickdealsbackend.model.Category;
+import com.niit.quickdeals.model.Category;
 
 public class CategoryTest {
 	
