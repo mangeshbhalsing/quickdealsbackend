@@ -1,12 +1,7 @@
 package com.niit.quickdeals.testcase;
 
-
-
-
-
-import org.junit.Assert.*;
-
 import static org.junit.Assert.*;
+
 
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -14,17 +9,18 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
+import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.dao.CategoryDAO;
-import com.niit.quickdeals.model.Category;
 
 
 public class CategoryTestCase {
 	
 	@Autowired
 	private static Category category;
-	
-    @Autowired
+
+	@Autowired
 	private static CategoryDAO categoryDAO;
+	
     
     @BeforeClass
     public static void init()
@@ -41,32 +37,24 @@ public class CategoryTestCase {
     public void createCategoryTestCase()
     {
     
-    category.setId("002");
-    category.setName("mobile category");
-    category.setDescription("this is mobile category");
+    category.setId("006");
+    category.setName("laptop category");
+    category.setDescription("this is laptop category");
     
     
     boolean flag= categoryDAO.save(category);
     
    // Assert.assertEquals("createCategoryTestCase",true,flag);	
     }
-  /*  @Test
-    public void updateCategoryTestCase()
-    {
-    	
-    	 category.setId("001");
-    	    category.setName("laptop category");
-    	    category.setDescription("this is latop category"); 	
-    	
-    }*/
+ 
     
     @Test
     public void updateCategoryTestCase()
     {
  	   
- 	   category.setId("CG02032017");
- 	   category.setName("new Category");
- 	   category.setDescription("This is Women category");
+ 	   category.setId("003");
+ 	   category.setName("kid Category");
+ 	   category.setDescription("This is kid category");
  	   
  	   boolean flag = categoryDAO.update(category);
  	   
@@ -76,8 +64,7 @@ public class CategoryTestCase {
     }
     
     
-    
-    @Test
+  @Test
     public void deleteCategoryByIDTestCase()
     {
  	   

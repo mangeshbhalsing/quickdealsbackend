@@ -2,7 +2,7 @@ package com.niit.quickdeals.dao;
 
 import java.util.List;
 
-import com.niit.quickdeals.model.Category;
+import com.niit.quickdeals.categorymodel.Category;
 
 public interface CategoryDAO {
 

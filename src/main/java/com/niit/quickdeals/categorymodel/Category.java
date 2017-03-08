@@ -1,4 +1,5 @@
-package com.niit.quickdeals.model;
+package com.niit.quickdeals.categorymodel;
+
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,7 +10,7 @@ import org.springframework.stereotype.Component;
 
 @Entity
 @Table(name="Category")  //if the class name and table name is different
-@Component               //if want to cerate instance of Class Category  - category
+@Component               //if want to create instance of Class Category  - category
 public class Category {
 	
 	//add simple properties - same as Category table

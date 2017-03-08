@@ -1,5 +1,7 @@
 package com.niit.quickdeals.dao.impl;
 
+
+
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -8,8 +10,9 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+
+import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.dao.CategoryDAO;
-import com.niit.quickdeals.model.Category;
 
 
 @Transactional
@@ -21,15 +24,15 @@ public class CategoryDAOimpl  implements CategoryDAO{
 	private SessionFactory sessionFactory;
 	
 	
-	
+		
 	//CategoryDAOImpl c = new CategoryDAOImpl
 	
-	
+	/*@Autowired
 	public CategoryDAOimpl(SessionFactory sessionFactory)
 	{
 		this.sessionFactory = sessionFactory;
-	}
-	
+	}*/
+
 	
 	
 
@@ -106,15 +109,3 @@ public class CategoryDAOimpl  implements CategoryDAO{
 	}
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
