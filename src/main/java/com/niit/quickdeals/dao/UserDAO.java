@@ -2,39 +2,23 @@ package com.niit.quickdeals.dao;
 
 import java.util.List;
 
-import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.categorymodel.User;
 
-public interface UserDAO{
-	
-public 	List <User> list();
+public interface UserDAO {
 
-public boolean save(User user);
+	public List<User> list();
 
-// update category
+	// public User getUser (String id);
 
-public boolean update(User user);
+	public boolean save(User user);
 
-// delete category by id
+	// update category
 
-public boolean delete(String id);
+	public boolean update(User user);
 
-// delete category by category
+	// delete category by id
+	public User getuserByID(String id);
 
-public boolean delete(User user);
-
-// get category by id
-
-public Category getUserByID(String id);
-
-// get category by name
-public Category getUserByName(String name);
-
-
-
-
-	
-	
-	
+	public boolean validation(String id, String password);
 
 }

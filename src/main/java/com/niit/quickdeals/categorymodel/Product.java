@@ -1,7 +1,5 @@
 package com.niit.quickdeals.categorymodel;
 
-
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,20 +7,17 @@ import javax.persistence.Table;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name="category")  //if the class name and table name is different
-@Component               //if want to create instance of Class Category  - category
-public class Category {
-	
-	//add simple properties - same as Category table
-//	generate getter/setter methods
-	
+@Table(name = "product")
+@Component
+
+public class Product {
 	@Id
 	private String id;
-	
-	@Column(name="name")  //if the field name and property name is different
 	private String name;
-	
 	private String description;
+	private String category_id;
+	private String supplier_id;
+	private String price;
 
 	public String getId() {
 		return id;
@@ -47,9 +42,29 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
+
+	public String getCategory_id() {
+		return category_id;
+	}
+
+	public void setCategory_id(String category_id) {
+		this.category_id = category_id;
+	}
+
+	public String getSupplier_id() {
+		return supplier_id;
+	}
+
+	public void setSupplier_id(String supplier_id) {
+		this.supplier_id = supplier_id;
+	}
+
+	public String getPrice() {
+		return price;
+	}
+
+	public void setPrice(String price) {
+		this.price = price;
+	}
 
 }

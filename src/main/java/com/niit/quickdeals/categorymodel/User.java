@@ -2,11 +2,16 @@ package com.niit.quickdeals.categorymodel;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
+
+
 @Entity
+
 @Component
+@Table(name="user")
 public class User {
 	@Id
 	private String id;
