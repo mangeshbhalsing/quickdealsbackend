@@ -1,9 +1,11 @@
 package com.niit.quickdeals.testcase;
 
+
+
 import static org.junit.Assert.*;
 
-import org.hibernate.SessionFactory;
-import org.hibernate.boot.internal.SessionFactoryBuilderImpl;
+
+
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;

@@ -1,29 +1,46 @@
 package com.niit.quickdeals.categorymodel;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.Max;
+import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
 
+
+
 @Entity
-@Table(name="category")  //if the class name and table name is different
-@Component               //if want to create instance of Class Category  - category
+@Table(name = "Category") // if the class name and table name is different
+@Component // if want to create instance of Class Category - category
 public class Category {
-	
-	//add simple properties - same as Category table
-//	generate getter/setter methods
-	
+
+	// add simple properties - same as Category table
+	// generate getter/setter methods
+
 	@Id
 	private String id;
-	
-	@Column(name="name")  //if the field name and property name is different
-	private String name;
-	
-	private String description;
 
+	@Min(5)
+	@Max(15)
+	@Column(name="name")
+	private String name;
+
+	private String description;
+	
+/*	@OneToMany(mappedBy="category", fetch = FetchType.EAGER)
+	private Set<Product> product;
+
+	
+	public Set<Product> getProduct() {
+		return product;
+	}
+
+	public void setProduct(Set<Product> product) {
+		this.product = product;
+	}
+*/
 	public String getId() {
 		return id;
 	}
@@ -47,9 +64,5 @@ public class Category {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	
-	
-	
 
 }

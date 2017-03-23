@@ -1,10 +1,14 @@
 package com.niit.quickdeals.config;
 
+
 import java.util.Properties;
 
 import javax.sql.DataSource;
+import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -18,10 +22,14 @@ import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.categorymodel.Product;
 import com.niit.quickdeals.categorymodel.Supplier;
 import com.niit.quickdeals.categorymodel.User;
+
+
+
 @Configuration
-@ComponentScan("com.niit.shopingcart")
+@ComponentScan("com.niit.quickdeals")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
+	private static Logger log = LoggerFactory.getLogger(ApplicationContextConfig.class);
 
 	@Bean(name = "dataSource")
 	public DataSource getH2DataSource() {
@@ -42,9 +50,11 @@ public class ApplicationContextConfig {
 	
 	private Properties getHibernateProperties() {
 		Properties properties = new Properties();
+		log.debug("entering git hibernet properties");
 		
 		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
 		properties.put("hibernate.show_sql", "true");
+		log.debug("ending git hibernet properties");
 		return properties;
 	}
 
@@ -53,10 +63,15 @@ public class ApplicationContextConfig {
 	public SessionFactory getSessionFactory(DataSource dataSource) {
 
 		LocalSessionFactoryBuilder sessionBuilder = new LocalSessionFactoryBuilder(dataSource);
+		
 		sessionBuilder.addProperties(getHibernateProperties());
+		
 		sessionBuilder.addAnnotatedClasses(Category.class);
+		
 		sessionBuilder.addAnnotatedClass(Supplier.class);
+		
 		sessionBuilder.addAnnotatedClass(Product.class);
+		
 		sessionBuilder.addAnnotatedClass(User.class);
 		
 		return sessionBuilder.buildSessionFactory();
@@ -68,6 +83,7 @@ public class ApplicationContextConfig {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
 
 		return transactionManager;
+		
 	}
 
 	
