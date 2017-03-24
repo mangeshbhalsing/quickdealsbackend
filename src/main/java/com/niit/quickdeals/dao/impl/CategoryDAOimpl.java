@@ -4,8 +4,9 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -45,7 +46,12 @@ public class CategoryDAOimpl  implements CategoryDAO{
 	public boolean save(Category category) {
 		try
 		{
+		/*Session session= 	sessionFactory.openSession();
+		Transaction tx= session.getTransaction();
+		tx.begin();
+		session.*/
 		sessionFactory.getCurrentSession().save(category);
+		
 		return true;
 		} catch(Exception e)
 		{

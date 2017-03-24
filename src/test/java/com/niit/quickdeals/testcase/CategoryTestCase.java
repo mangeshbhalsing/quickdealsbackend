@@ -2,6 +2,9 @@ package com.niit.quickdeals.testcase;
 
 import static org.junit.Assert.*;
 
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +13,19 @@ import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.dao.CategoryDAO;
 
+
+
 public class CategoryTestCase {
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	
+	
+	//CategoryDAOImpl c = new CategoryDAOImpl
+	
+	
+	
 
 	@Autowired
 	private static Category category;
@@ -35,7 +50,8 @@ public class CategoryTestCase {
 	// To Create the Table
 	@Test
 	public void createCategoryTestCase() {
-		category.setId("19");
+	
+		category.setId("4s");
 		category.setName(" Bat  th mobileCategory");
 		category.setDescription("This is Mobile category");
 
@@ -47,10 +63,11 @@ public class CategoryTestCase {
 	}
 
 	// Update the Table
-	//@Test
+	@Test
 	public void updateCategoryTestCase() {
+		
 
-		category.setId("CG03032017");
+		category.setId("05");
 		category.setName("new MObile Category");
 		category.setDescription("THis is mobile category");
 
@@ -58,17 +75,17 @@ public class CategoryTestCase {
 		assertEquals("updateCategoryTestCase", true, flag);
 	}
 
-	//@Test
+	@Test
 	public void deleteTestCase() {
 
-		boolean flag = categoryDAO.delete("CG02032017");
+		boolean flag = categoryDAO.delete("0010");
 		assertEquals("deleteTestCase", true, flag);
 	}
 
-	//@Test
+	@Test
 	public void deleteByCategoryTestCase() {
 
-		category.setId("CG04032017");
+		category.setId("3s");
 
 		boolean flag = categoryDAO.delete(category);
 
@@ -76,17 +93,17 @@ public class CategoryTestCase {
 
 	}
 
-	//@Test
+	@Test
 	public void getCategoryByIDTestCase() {
 
-		category = categoryDAO.getCategoryByID("CG01032017d");
+		category = categoryDAO.getCategoryByID("8");
 		assertEquals("getCategoryByIDTestCase", null, category);
 	}
 
-	//@Test
+	@Test
 	public void getCategoryByNameTestCase() {
 
-		category = categoryDAO.getCategoryByName("Mobiled category");
+		category = categoryDAO.getCategoryByName("dmo");
 
 		assertEquals("getCategoryByNameTestCase", null, category);
 	}
@@ -98,7 +115,7 @@ public class CategoryTestCase {
 												// how many inserted and give
 												// the value is stored in size.
 
-		assertEquals("getallCategoryValuesTestCase", 3, size);
+		assertEquals("getallCategoryValuesTestCase", 10, size);
 	}
 
 }
