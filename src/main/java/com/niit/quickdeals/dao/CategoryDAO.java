@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.niit.quickdeals.categorymodel.Category;
 
+
+
 public interface CategoryDAO {
 
 	// declare the methods related to CRUD operations
