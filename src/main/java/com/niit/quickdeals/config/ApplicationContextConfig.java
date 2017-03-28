@@ -23,37 +23,9 @@ import com.niit.quickdeals.categorymodel.User;
 
 
 @Configuration
-@ComponentScan("com.niit.quickdeals")
+@ComponentScan("com.niit")
 @EnableTransactionManagement
 public class ApplicationContextConfig {
-	
-
-	@Bean(name = "dataSource")
-	public DataSource getH2DataSource() {
-
-		DriverManagerDataSource dataSource = new DriverManagerDataSource();
-			
-		dataSource.setUrl("jdbc:h2:tcp://localhost/~/NIITDB");
-
-		dataSource.setDriverClassName("org.h2.Driver");
-
-		dataSource.setUsername("mangesh");
-		dataSource.setPassword("mangesh");
-		
-		
-		return dataSource;
-	}
-
-	
-	private Properties getHibernateProperties() {
-		Properties properties = new Properties();
-		
-		
-		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
-		properties.put("hibernate.show_sql", "true");
-		
-		return properties;
-	}
 
 	@Autowired
 	@Bean(name = "sessionFactory")
@@ -71,10 +43,44 @@ public class ApplicationContextConfig {
 		
 		sessionBuilder.addAnnotatedClass(User.class);
 		
+		
 		return sessionBuilder.buildSessionFactory();
 	}
 	
+
 	
+	
+	
+
+	@Bean(name = "dataSource")
+	public DataSource getH2DataSource() {
+
+		DriverManagerDataSource dataSource = new DriverManagerDataSource();
+			
+		dataSource.setUrl("jdbc:h2:tcp://localhost/~/NIITDB");
+
+		dataSource.setDriverClassName("org.h2.Driver");
+
+		dataSource.setUsername("mangesh");
+		dataSource.setPassword("mangesh");
+		
+		
+		
+		return dataSource;
+	}
+
+	
+	private Properties getHibernateProperties() {
+		Properties properties = new Properties();
+		
+		
+		properties.put("hibernate.dialect", "org.hibernate.dialect.H2Dialect");
+		properties.put("hibernate.show_sql", "true");
+		
+		return properties;
+	}
+
+		
 	
 
 	@Autowired

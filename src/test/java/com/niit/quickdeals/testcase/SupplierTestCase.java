@@ -4,7 +4,7 @@ package com.niit.quickdeals.testcase;
 
 import static org.junit.Assert.assertEquals;
 
-import org.junit.Assert;
+
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,7 +14,6 @@ import com.niit.quickdeals.categorymodel.Supplier;
 import com.niit.quickdeals.dao.SupplierDAO;
 
 
-
 public class SupplierTestCase {
 
 	@Autowired
@@ -22,119 +21,104 @@ public class SupplierTestCase {
 
 	@Autowired
 	private static SupplierDAO supplierDAO;
+
+	@BeforeClass
+	public static void init() {
+
+		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext();
+		context.scan("com.niit");
+		context.refresh();
+
+		supplier = (Supplier) context.getBean("supplier");
+
+		supplierDAO = (SupplierDAO) context.getBean("supplierDAO");
+		
+	}
 	
-    
-    @BeforeClass
-    public static void init()
-    {
-    	AnnotationConfigApplicationContext context= new AnnotationConfigApplicationContext();
-    	context.scan("com.niit");
-    	context.refresh();
-    	
-    	supplier = (Supplier) context.getBean("supplier");
-    	supplierDAO = (SupplierDAO) context.getBean("supplierDAO");	
-    	
-    }
-    
-    @Test
-    public void createCategoryTestCase()
-    {
-  
-    
-    	supplier.setId("05");
-    	supplier.setName("mobile category");
-    	supplier.setAddress("beack queen");;
-    
-    
-    boolean flag= supplierDAO.save(supplier);
-    
-    }
-    
-    @Test
-    public void updateCategoryTestCase()
-    {
- 	   
-    	supplier.setId("04");
-    	supplier.setName("kid Category");
-    	supplier.setAddress("This is kid category");
- 	   
- 	   boolean flag = supplierDAO.update(supplier);
- 	   
- 	   Assert.assertEquals( "updateCategoryTestCase" ,true, flag);
- 	   
- 	   
-    }
-    
-    @Test
-    public void deleteSupplierByIDTestCase()
-    {
- 	   
- 	   boolean flag = supplierDAO.delete("03");
- 	   
- 	   Assert.assertEquals( "deleteSupplierByIDTestCase" ,true, flag);
- 	   
- 	   
- 	   
-    }
-    
-   // @Test
-    public void deleteSupplierTestCase()
-    {
-    	supplier.setId("01");
- 	   
- 	   boolean flag = supplierDAO.delete(supplier);
- 	   
- 	   Assert.assertEquals( "deleteSupplierTestCase" ,true, flag);
- 	   
- 	   
- 	   
-    }
-    
-    @Test
-    public void getCategoryByIDTestCase()
-    {
- 	   
-    	supplier = supplierDAO.getSupplierByID("001");
- 	  
- 	  
- 	 // Assert.assertNotNull("getCategoryByIDTestCase", category);
- 	  
- 	  
- 	  assertEquals("getCategoryByIDTestCase", null, supplier);
- 	   
-    }
-    
-    
-    @Test
-    public void getCategoryByNameTestCase()
-    {
- 	   
-    	supplier = supplierDAO.getSupplierByName("This is  laptop Category");
- 	  
- 	  
- 	 // Assert.assertNotNull("getCategoryByIDTestCase", category);
- 	  
- 	  
- 	  assertEquals("getCategoryByNameTestCase", null, supplier);
- 	   
-    }
-    
-    
-    @Test
-    public void getAllCategoriesTestCase()
-    
-    {
- 	   
- 	  int recordsFromDAO =  supplierDAO.list().size();
- 	  
- 	  assertEquals("getAllCategoriesTestCase" ,7 , recordsFromDAO);
- 	   
-    }
-    
-    
-    
-    
+	//@Test
+	public void createSupplierTestCase() {
+		
+		supplier.setId("12111");
+		supplier.setName("bassdiwaka");
+		supplier.setAddress("Viddsrarjjjj");
+
+		boolean flag = supplierDAO.save(supplier);
+
+		assertEquals("createSupplierTestCase", true, flag);
+		
+	}
 	
+	//@Test
+		public void deleteByIdTestCase(){
+			
+			boolean flag = supplierDAO.delete("05");
+			
+			assertEquals("getProductByIdTestcase",true,flag);
+			
+			
+		}
+	
+	
+	//@Test
+	public void deleteBySupplierTestCase() {
+
+		supplier.setId("03");
+
+		boolean flag = supplierDAO.delete(supplier);
+
+		assertEquals("deleteBySupplierTestCase", true, flag);
+
 	}
 
 
+
+
+	//@Test
+	public void updateSupplierTestCase() {
+		
+		supplier = new Supplier();
+		supplier.setId("01");
+		supplier.setName("fasd3333");
+		supplier.setAddress("sfkjaslhdf");
+		
+		boolean flag = supplierDAO.update(supplier);
+		
+		assertEquals("updateSupplierTestCase",true, flag);
+		
+	}
+	
+	
+
+	
+	//@Test
+	public void getSupplierByIdTestcase() {
+
+		supplier = supplierDAO.getSupplierByID("02");
+		
+		assertEquals("getSupplierByIdTestcase", null, supplier);
+		
+		System.out.println(supplier);
+		
+	}
+	
+	
+	//@Test
+	public void getSupplierByNameTestCase() {
+
+		supplier = supplierDAO.getSupplierByName("mb");
+		
+		assertEquals("getSupplierByNameTestCase", null, supplier);
+		
+		
+		
+	}
+	@Test 
+	public void getallSupplierTestCase() {
+
+		int size = supplierDAO.list().size();
+		
+		assertEquals("getallSupplierTestCase", 8, size);
+		
+	}
+
+}

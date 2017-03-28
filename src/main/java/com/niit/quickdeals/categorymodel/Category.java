@@ -26,8 +26,6 @@ public class Category {
 	private String id;
 	
 	@Column(name="name") //if the field name and property name is different
-	@Min(5) //Min and maximum value
-	@Max(15) 
 	private String name;
 	
 	

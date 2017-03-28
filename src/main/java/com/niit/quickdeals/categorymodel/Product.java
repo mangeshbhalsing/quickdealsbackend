@@ -1,5 +1,6 @@
 package com.niit.quickdeals.categorymodel;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -11,34 +12,35 @@ import javax.validation.constraints.Min;
 import org.springframework.stereotype.Component;
 
 @Entity
-@Table(name = "Product")
+@Table(name = "Product") // if the class name and table name is different
 @Component
 public class Product {
-	
+
 	@Id
 	private String id;
-	
-	@Min(5)
-	@Max(10)
+
+	@Column(name = "name")
+	@Min(5) // Min and maximum value
+	@Max(15)
 	private String name;
-	
-	private String description;
-	
+
+	@Min(2) // Min and maximum value
+	@Max(10)
+	private double price;
+
+	private String Description;
+
 	private String category_id;
-	
+
 	private String supplier_id;
-	
-	
-	private String price;
-	
+
 	@ManyToOne
-	@JoinColumn(name="category_id",updatable=false,insertable=false,nullable=false)
-	private  Category category;
-	
+	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
+	private Category category;
+
 	@ManyToOne
-	@JoinColumn(name="supplier_id",updatable=false,insertable=false,nullable=false)
+	@JoinColumn(name = "supplier_id", updatable = false, insertable = false, nullable = false)
 	private Supplier supplier;
-	
 
 	public String getId() {
 		return id;
@@ -56,12 +58,20 @@ public class Product {
 		this.name = name;
 	}
 
+	public double getPrice() {
+		return price;
+	}
+
+	public void setPrice(double price) {
+		this.price = price;
+	}
+
 	public String getDescription() {
-		return description;
+		return Description;
 	}
 
 	public void setDescription(String description) {
-		this.description = description;
+		Description = description;
 	}
 
 	public String getCategory_id() {
@@ -78,14 +88,6 @@ public class Product {
 
 	public void setSupplier_id(String supplier_id) {
 		this.supplier_id = supplier_id;
-	}
-
-	public String getPrice() {
-		return price;
-	}
-
-	public void setPrice(String price) {
-		this.price = price;
 	}
 
 }

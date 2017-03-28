@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.niit.quickdeals.categorymodel.Supplier;
 
+
+
 public interface SupplierDAO {
 
 	public List<Supplier> list();
@@ -11,13 +13,16 @@ public interface SupplierDAO {
 	public boolean save(Supplier supplier);
 
 	public boolean update(Supplier supplier);
-
+	
+	//delete supplier by id
+	public boolean delete(String id);
+	
 	public boolean delete(Supplier supplier);
-
-	public boolean delete(String ID);
-
+	
 	public Supplier getSupplierByID(String id);
+
 
 	public Supplier getSupplierByName(String name);
 
 }
+

@@ -4,9 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -109,6 +107,25 @@ public class CategoryDAOimpl  implements CategoryDAO{
 		  return  (Category) sessionFactory.getCurrentSession().createQuery("from Category where name = '"+name + "'").uniqueResult();
 			
 
+	}
+
+
+
+
+	
+	public boolean saveOrUpdate(Category category) {
+		try
+	{
+
+	sessionFactory.getCurrentSession().saveOrUpdate(category);
+	
+	return true;
+	} catch(Exception e)
+	{
+		e.printStackTrace(); //it will print the error in the console - similar to SOP
+		          //package, class, method line number from which place you are calling
+		return false;
+	}
 	}
 
 }
