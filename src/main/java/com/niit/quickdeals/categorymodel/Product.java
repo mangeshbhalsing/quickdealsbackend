@@ -20,12 +20,10 @@ public class Product {
 	private String id;
 
 	@Column(name = "name")
-	@Min(5) // Min and maximum value
-	@Max(15)
+	
 	private String name;
 
-	@Min(2) // Min and maximum value
-	@Max(10)
+
 	private double price;
 
 	private String Description;
@@ -71,7 +69,7 @@ public class Product {
 	}
 
 	public void setDescription(String description) {
-		Description = description;
+		this.Description = description;
 	}
 
 	public String getCategory_id() {

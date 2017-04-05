@@ -25,8 +25,6 @@ public class Supplier {
 	private String id;
 	
 	@Column(name="name")
-	@Min(5) //Min and maximum value
-	@Max(15)
 	private String name;
 	
 	

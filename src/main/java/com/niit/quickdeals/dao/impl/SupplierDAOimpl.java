@@ -30,7 +30,7 @@ public class SupplierDAOimpl implements SupplierDAO {
 
 	public List<Supplier> list() {
 		
-		return sessionFactory.getCurrentSession().createQuery("from User").list();
+		return sessionFactory.getCurrentSession().createQuery("from Supplier").list();
 	}
 
 	public boolean save(Supplier supplier) {
@@ -91,6 +91,20 @@ public class SupplierDAOimpl implements SupplierDAO {
 	public boolean delete(Supplier supplier) {
 		try {
 			sessionFactory.getCurrentSession().delete(supplier);
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return false;
+			
+		}
+	}
+
+
+
+	@Override
+	public boolean saveOrUpdate(Supplier supplier) {
+		try {
+			sessionFactory.getCurrentSession().saveOrUpdate(supplier);
 			return true;
 		} catch (Exception e) {
 			e.printStackTrace();

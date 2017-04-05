@@ -48,12 +48,12 @@ public class CategoryTestCase {
 	// TEST Cases to notify it we give @test annotation that test case are here
 
 	// To Create the Table
-	//@Test
+	@Test
 	public void createCategoryTestCase() {
 	
-		category.setId("11dssds");
-		category.setName(" Bat  th mobidsfasdleCategory");
-		category.setDescription("This is Mobilsafase category");
+		category.setId("afasdfaasd");
+		category.setName(" Men wears ");
+		category.setDescription("this is men category");
 
 		boolean flag = categoryDAO.save(category);
 
@@ -62,30 +62,30 @@ public class CategoryTestCase {
 		// method
 	}
 
-	// Update the Table
-	//@Test
+	/*// Update the Table
+	@Test
 	public void updateCategoryTestCase() {
 		
 
-		category.setId("13s");
-		category.setName("new MObile Category");
-		category.setDescription("THis is mobile category");
+		category.setId("Kid");
+		category.setName("Kid wears");
+		category.setDescription("THis is Kid category");
 
 		boolean flag = categoryDAO.update(category);
 		assertEquals("updateCategoryTestCase", true, flag);
 	}
 
-	//@Test
+	@Test
 	public void deleteTestCase() {
 
-		boolean flag = categoryDAO.delete("101s");
+		boolean flag = categoryDAO.delete("02");
 		assertEquals("deleteTestCase", true, flag);
 	}
 
-	//@Test
+	@Test
 	public void deleteByCategoryTestCase() {
 
-		category.setId("11s");
+		category.setId("01");
 
 		boolean flag = categoryDAO.delete(category);
 
@@ -96,14 +96,13 @@ public class CategoryTestCase {
 	@Test
 	public void getCategoryByIDTestCase() {
 
-		category = categoryDAO.getCategoryByID("8s");
+		category = categoryDAO.getCategoryByID("Kid");
 		assertEquals("getCategoryByIDTestCase", null, category);
 	}
-
-	//@Test
+	@Test
 	public void getCategoryByNameTestCase() {
 
-		category = categoryDAO.getCategoryByName(" Bat  th mobidsfasdleCategory");
+		category = categoryDAO.getCategoryByName("111");
 		assertEquals("getCategoryByNameTestCase", null, category);
 	}
 
@@ -114,7 +113,7 @@ public class CategoryTestCase {
 												// how many inserted and give
 												// the value is stored in size.
 
-		assertEquals("getallCategoryValuesTestCase", 5, size);
-	}
+		assertEquals("getallCategoryValuesTestCase", 3, size);
+	}*/
 
 }

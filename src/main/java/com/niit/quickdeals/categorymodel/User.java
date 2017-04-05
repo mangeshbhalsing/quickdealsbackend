@@ -24,8 +24,6 @@ public class User {
 	private String name;
 	
 
-	@Min(5) 
-	@Max(10)
 	private String password;
 	
 	//@Column(unique=true ,nullable=false)

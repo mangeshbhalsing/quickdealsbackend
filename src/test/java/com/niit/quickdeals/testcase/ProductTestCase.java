@@ -34,10 +34,10 @@ public class ProductTestCase {
 	//@Test
 	 public void createProductTestcase() {
 	
-	 product.setId("1f1");
-	 product.setName("mobiles02");
+	 product.setId("jeans");
+	 product.setName("jeans");
 	 product.setPrice(25000);
-	 product.setDescription("THIS IS THE MOBILE2 CALLED IPHONE");
+	 product.setDescription("this is a jeans product");
 	// product.setCategory_id("19");
 	// product.setSupplier_id("SP02032017");
 	
@@ -47,10 +47,10 @@ public class ProductTestCase {
 	
 	 }
 
-	 @Test
+	// @Test
 	 public void updateProductTestCase() {
 	
-	 product.setId("11");
+	 product.setId("13");
 	 product.setName("mobiles_karboonK9");
 	 product.setPrice(2000);
 	 product.setDescription("THIS IS THE MOBILE CALLED Karboon");
@@ -71,22 +71,21 @@ public class ProductTestCase {
 	 assertEquals("deleteTestCase", true ,flag);
 	 }
 
- // @Test
+	//@Test
 	public void deleteByProductTestCase() {
 
-		product.setId("11");
 
 		boolean flag = productDAO.delete(product);
 		assertEquals("deleteByProductTestCase", true, flag);
 
 	}
 
-	//@Test // This is passing for bothERROR plzs correct
+	@Test // This is passing for bothERROR plzs correct
 	public void getProductByNameTestCase() {
 
 		product = productDAO.getProductByName("mobiles02");
 
-		assertEquals("getProductByNameTestCase", product, product);
+		assertEquals("getProductByNameTestCase",null, product);
 
 	}
 
@@ -106,7 +105,7 @@ public class ProductTestCase {
 											// how many inserted and give the
 											// value is stored in size.
 
-		assertEquals("getallProductTestcase", 4, size);
+		assertEquals("getallProductTestcase", 2, size);
 
 	}
 

@@ -23,6 +23,8 @@ public interface SupplierDAO {
 
 
 	public Supplier getSupplierByName(String name);
+	
+	public boolean saveOrUpdate (Supplier supplier);
 
 }
 

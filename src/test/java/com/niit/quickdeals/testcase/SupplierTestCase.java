@@ -35,12 +35,12 @@ public class SupplierTestCase {
 		
 	}
 	
-	//@Test
+	@Test
 	public void createSupplierTestCase() {
 		
-		supplier.setId("12111");
-		supplier.setName("bassdiwaka");
-		supplier.setAddress("Viddsrarjjjj");
+		supplier.setId("2");
+		supplier.setName("yash");
+		supplier.setAddress("delhi");
 
 		boolean flag = supplierDAO.save(supplier);
 
@@ -48,10 +48,10 @@ public class SupplierTestCase {
 		
 	}
 	
-	//@Test
+	@Test
 		public void deleteByIdTestCase(){
 			
-			boolean flag = supplierDAO.delete("05");
+			boolean flag = supplierDAO.delete("06");
 			
 			assertEquals("getProductByIdTestcase",true,flag);
 			
@@ -59,10 +59,10 @@ public class SupplierTestCase {
 		}
 	
 	
-	//@Test
+	@Test
 	public void deleteBySupplierTestCase() {
 
-		supplier.setId("03");
+		supplier.setId("07");
 
 		boolean flag = supplierDAO.delete(supplier);
 
@@ -73,11 +73,11 @@ public class SupplierTestCase {
 
 
 
-	//@Test
+	@Test
 	public void updateSupplierTestCase() {
 		
 		supplier = new Supplier();
-		supplier.setId("01");
+		supplier.setId("SP0");
 		supplier.setName("fasd3333");
 		supplier.setAddress("sfkjaslhdf");
 		
@@ -90,10 +90,10 @@ public class SupplierTestCase {
 	
 
 	
-	//@Test
+	@Test
 	public void getSupplierByIdTestcase() {
 
-		supplier = supplierDAO.getSupplierByID("02");
+		supplier = supplierDAO.getSupplierByID("0121212");
 		
 		assertEquals("getSupplierByIdTestcase", null, supplier);
 		
@@ -102,10 +102,10 @@ public class SupplierTestCase {
 	}
 	
 	
-	//@Test
+	@Test
 	public void getSupplierByNameTestCase() {
 
-		supplier = supplierDAO.getSupplierByName("mb");
+		supplier = supplierDAO.getSupplierByName("dssdsd");
 		
 		assertEquals("getSupplierByNameTestCase", null, supplier);
 		
