@@ -1,15 +1,16 @@
 package com.niit.quickdeals.categorymodel;
 
+import java.beans.Transient;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 
 import org.springframework.stereotype.Component;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 @Table(name = "Product") // if the class name and table name is different
@@ -20,9 +21,8 @@ public class Product {
 	private String id;
 
 	@Column(name = "name")
-	
-	private String name;
 
+	private String name;
 
 	private double price;
 
@@ -31,6 +31,35 @@ public class Product {
 	private String category_id;
 
 	private String supplier_id;
+
+	@javax.persistence.Transient
+	private MultipartFile file;
+
+	public MultipartFile getFile() {
+		return file;
+	}
+	
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
+
+	public Supplier getSupplier() {
+		return supplier;
+	}
+
+	public void setSupplier(Supplier supplier) {
+		this.supplier = supplier;
+	}
+
+	
 
 	@ManyToOne
 	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
