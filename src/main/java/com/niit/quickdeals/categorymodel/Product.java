@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
@@ -60,10 +61,22 @@ public class Product {
 	}
 
 	
-
 	@ManyToOne
 	@JoinColumn(name = "category_id", updatable = false, insertable = false, nullable = false)
 	private Category category;
+
+	/*@ManyToOne
+	@JoinColumn(name = "cart_id", updatable = false, insertable = false, nullable = false)
+	private Cart cart;
+	
+	public Cart getCart() {
+		return cart;
+	}
+
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
+*/
 
 	@ManyToOne
 	@JoinColumn(name = "supplier_id", updatable = false, insertable = false, nullable = false)

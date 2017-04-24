@@ -1,9 +1,14 @@
 package com.niit.quickdeals.categorymodel;
 
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -33,6 +38,8 @@ public class User {
 	private String contact;
 	
 	private String role;
+	
+	
 
 	public String getId() {
 		return id;

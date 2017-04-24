@@ -15,6 +15,7 @@ import org.springframework.orm.hibernate5.LocalSessionFactoryBuilder;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.niit.quickdeals.categorymodel.Category;
+import com.niit.quickdeals.categorymodel.MyCart;
 import com.niit.quickdeals.categorymodel.Product;
 import com.niit.quickdeals.categorymodel.Supplier;
 import com.niit.quickdeals.categorymodel.User;
@@ -43,6 +44,7 @@ public class ApplicationContextConfig {
 		
 		sessionBuilder.addAnnotatedClass(User.class);
 		
+		sessionBuilder.addAnnotatedClass(MyCart.class);
 		
 		return sessionBuilder.buildSessionFactory();
 	}
@@ -87,12 +89,7 @@ public class ApplicationContextConfig {
 	@Bean(name = "transactionManager")
 	public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
 		HibernateTransactionManager transactionManager = new HibernateTransactionManager(sessionFactory);
-
 		return transactionManager;
-		
-		
-		
-		
 		
 	}
 

@@ -1,160 +1,139 @@
 package com.niit.quickdeals.dao.impl;
 
+
 import java.util.List;
 
+import javax.transaction.Transactional;
+
+import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.niit.quickdeals.categorymodel.Cart;
+import com.niit.quickdeals.categorymodel.Category;
+import com.niit.quickdeals.categorymodel.MyCart;
 import com.niit.quickdeals.dao.CartDAO;
 
-@Repository
+@Repository("cartDAO")
+@Transactional
 public class CartDAOImpl implements CartDAO {
-
-	private final Logger logger = LoggerFactory.getLogger(CartDAOImpl.class);
-
+	private static Logger log = LoggerFactory.getLogger(CartDAOImpl.class);
 	@Autowired
 	private SessionFactory sessionFactory;
 
-	@Override
-	public List<Cart> getCartList(String username) {
-		// TODO Auto-generated method stub
+	public CartDAOImpl() {
+
+	}
+
+	public CartDAOImpl(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
+
+	@Transactional
+	public List<MyCart> list(String userID) {
+		log.debug("Starting of the method list");
+		String hql = "from MyCart where user_id=" + "'" + userID + "'  and status = " + "'N'";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("Ending of the method list");
+		return query.list();
+
+	}
+
+	@Transactional
+	public boolean save(MyCart myCart) {
+		try
+		{
+		/*Session session= 	sessionFactory.openSession();
+		Transaction tx= session.getTransaction();
+		tx.begin();
+		session.*/
+			//myCart.setId(getMaxId());
+		myCart.setId(getMaxId());
+		sessionFactory.getCurrentSession().save(myCart);
+		
+		return true;
+		} catch(Exception e)
+		{
+			e.printStackTrace(); //it will print the error in the console - similar to SOP
+			          //package, class, method line number from which place you are calling
+			return false;
+		}
+	}
+
+	@Transactional
+	public Long getTotalAmount(String userID) {
+		log.debug("Starting of the method getTotalAmount");
+		String hql = "select sum(price) from MyCart where user_id=" + "'" + userID + "' " + "  and status = " + "'N'";
+		log.debug("hql" + hql);
+
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		log.debug("Ending of the method getTotalAmount");
+		return (Long) query.uniqueResult();
+
+	}
+
+	public Long getMaxId() {
+		log.debug("->->Starting of the method getMaxId");
+
+		Long maxID = 100L;
 		try {
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("from Cart where username = '" + username + "'");
-			return query.list();
-		} catch (Exception e) {
-			// TODO: handle exception
+			String hql = "select max(id) from MyCart";
+			Query query = sessionFactory.getCurrentSession().createQuery(hql);
+			maxID = (Long) query.uniqueResult();
+		} catch (HibernateException e) {
+			log.debug("It seems this is first record. setting initial id is 0 :");
+			maxID = 100L;
 			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
+		}
+		log.debug("Max id :" + maxID);
+		return maxID + 1;
+
+	}
+
+	@Override
+	public boolean saveorUpdate(MyCart myCart) {
+		try
+		{
+		/*Session session= 	sessionFactory.openSession();
+		Transaction tx= session.getTransaction();
+		tx.begin();
+		session.*/
+			//myCart.setId(getMaxId());
+		sessionFactory.getCurrentSession().saveOrUpdate(myCart);
+		
+		return true;
+		} catch(Exception e)
+		{
+			e.printStackTrace(); //it will print the error in the console - similar to SOP
+			          //package, class, method line number from which place you are calling
+			return false;
 		}
 	}
 
 	@Override
-	public boolean save(Cart cart) {
-		// TODO Auto-generated method stub
-		logger.info("Starting save method of cartdaoimpl");
+	public boolean delete(String id) {
 		try {
-			sessionFactory.getCurrentSession().save(cart);
+			sessionFactory.getCurrentSession().delete(getCartByID(id));
 			return true;
 		} catch (Exception e) {
-			// TODO: handle exception
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
+			return false;
 		}
 	}
 
 	@Override
-	public boolean delete(Cart cart) {
-		// TODO Auto-generated method stub
-		logger.info("Starting delete method of cartdaoimpl");
-		try {
-			sessionFactory.getCurrentSession().delete(cart);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
+	public MyCart getCartByID(String id) {
+		//select * from Category where id ='mobile'
+		//  return	(Category)  sessionFactory.getCurrentSession().get(Category.class, id);
+		  
+		  return  (MyCart) sessionFactory.getCurrentSession().createQuery("from MyCart where id = '"+id + "'").uniqueResult();
+			
 		}
 	}
 
-	@Override
-	public boolean update(Cart cart) {
-		// TODO Auto-generated method stub
-		try {
-			sessionFactory.getCurrentSession().update(cart);
-			return true;
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
-		}
-	}
 
-	@Override
-	public long getTotalAmount(String username) {
-		// TODO Auto-generated method stub
-		try {
 
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("SELECT SUM(price) FROM Cart where username='" + username + "'");
-			if (query.uniqueResult() == null) {
-				return 0;
-			} else {
-				long result = (long) query.uniqueResult();
-				return result;
-			}
-
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
-		}
-	}
-
-	@Override
-	public Cart getCartByUsername(String username, String productname) {
-		// TODO Auto-generated method stub
-		try {
-			logger.info("Starting getcartbyusername method of cartdaoimpl");
-
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("from Cart WHERE username='" + username + "' and product_name='" + productname + "'");
-			logger.info("Ending getcartbyusername method of cartdaoimpl");
-			return (Cart) query.uniqueResult();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
-		}
-	}
-
-	@Override
-	public int getQuantity(String username, String productname) {
-		// TODO Auto-generated method stub
-		try {
-			logger.info("Starting getquantity method of cartdaoimpl");
-
-			Query query = sessionFactory.getCurrentSession().createQuery("SELECT quantity from Cart WHERE username='"
-					+ username + "' and product_name='" + productname + "'");
-			logger.info("Ending getquantity method of cartdaoimpl");
-			return (int) query.uniqueResult();
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
-		}
-	}
-
-	@Override
-	public long getNumberOfProducts(String username) {
-		// TODO Auto-generated method stub
-		try {
-			Query query = sessionFactory.getCurrentSession()
-					.createQuery("SELECT SUM(quantity) FROM Cart where username='" + username + "'");
-			if (query.uniqueResult() == null) {
-				return 0;
-			} else {
-				long result = (long) query.uniqueResult();
-				return result;
-			}
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			logger.error("Exception occured" + e);
-			throw e;
-		}
-	}
-
-}

@@ -1,10 +1,8 @@
 package com.niit.quickdeals.testcase;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
-import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +39,7 @@ public class CategoryTestCase {
 		context.refresh();
 
 		category = (Category) context.getBean("category");
-
+		
 		categoryDAO = (CategoryDAO) context.getBean("categoryDAO");
 
 	}
@@ -51,7 +49,7 @@ public class CategoryTestCase {
 	@Test
 	public void createCategoryTestCase() {
 	
-		category.setId("afasdfaasd");
+		category.setId("afd");
 		category.setName(" Men wears ");
 		category.setDescription("this is men category");
 
@@ -61,19 +59,21 @@ public class CategoryTestCase {
 		// compare what you are expecting Vs what we are getting from save
 		// method
 	}
-
-	/*// Update the Table
-	@Test
+	
+	//@Test
 	public void updateCategoryTestCase() {
 		
 
-		category.setId("Kid");
+		category.setId("afassd");
 		category.setName("Kid wears");
 		category.setDescription("THis is Kid category");
 
 		boolean flag = categoryDAO.update(category);
 		assertEquals("updateCategoryTestCase", true, flag);
 	}
+
+	/*// Update the Table
+	
 
 	@Test
 	public void deleteTestCase() {

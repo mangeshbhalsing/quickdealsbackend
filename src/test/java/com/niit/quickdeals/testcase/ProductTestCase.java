@@ -63,10 +63,10 @@ public class ProductTestCase {
 	
 	 }
 
-	// @Test
+	 @Test
 	 public void deleteTestCase(){
 	
-	 boolean flag = productDAO.delete("12");
+	 boolean flag = productDAO.delete("11");
 	
 	 assertEquals("deleteTestCase", true ,flag);
 	 }
