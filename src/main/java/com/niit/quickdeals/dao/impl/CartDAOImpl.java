@@ -1,6 +1,5 @@
 package com.niit.quickdeals.dao.impl;
 
-
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -13,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.niit.quickdeals.categorymodel.Category;
 import com.niit.quickdeals.categorymodel.MyCart;
 import com.niit.quickdeals.dao.CartDAO;
 
@@ -43,22 +41,44 @@ public class CartDAOImpl implements CartDAO {
 	}
 
 	@Transactional
+	public boolean deleteNow(MyCart myCart) {
+
+		myCart.setStatus("X");
+
+		return update(myCart);
+	}
+
+	@Transactional
+	public boolean update(MyCart myCart) {
+
+		try {
+			sessionFactory.getCurrentSession().update(myCart);
+			return true;
+
+		} catch (HibernateException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			return false;
+		}
+	}
+
+	@Transactional
 	public boolean save(MyCart myCart) {
-		try
-		{
-		/*Session session= 	sessionFactory.openSession();
-		Transaction tx= session.getTransaction();
-		tx.begin();
-		session.*/
-			//myCart.setId(getMaxId());
-		myCart.setId(getMaxId());
-		sessionFactory.getCurrentSession().save(myCart);
-		
-		return true;
-		} catch(Exception e)
-		{
-			e.printStackTrace(); //it will print the error in the console - similar to SOP
-			          //package, class, method line number from which place you are calling
+		try {
+			/*
+			 * Session session= sessionFactory.openSession(); Transaction tx=
+			 * session.getTransaction(); tx.begin(); session.
+			 */
+			// myCart.setId(getMaxId());
+			myCart.setId(getMaxId());
+			sessionFactory.getCurrentSession().save(myCart);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace(); // it will print the error in the console -
+									// similar to SOP
+			// package, class, method line number from which place you are
+			// calling
 			return false;
 		}
 	}
@@ -93,27 +113,27 @@ public class CartDAOImpl implements CartDAO {
 
 	}
 
-	@Override
+	@Transactional
 	public boolean saveorUpdate(MyCart myCart) {
-		try
-		{
-		/*Session session= 	sessionFactory.openSession();
-		Transaction tx= session.getTransaction();
-		tx.begin();
-		session.*/
-			//myCart.setId(getMaxId());
-		sessionFactory.getCurrentSession().saveOrUpdate(myCart);
-		
-		return true;
-		} catch(Exception e)
-		{
-			e.printStackTrace(); //it will print the error in the console - similar to SOP
-			          //package, class, method line number from which place you are calling
+		try {
+			/*
+			 * Session session= sessionFactory.openSession(); Transaction tx=
+			 * session.getTransaction(); tx.begin(); session.
+			 */
+			// myCart.setId(getMaxId());
+			sessionFactory.getCurrentSession().saveOrUpdate(myCart);
+
+			return true;
+		} catch (Exception e) {
+			e.printStackTrace(); // it will print the error in the console -
+									// similar to SOP
+			// package, class, method line number from which place you are
+			// calling
 			return false;
 		}
 	}
 
-	@Override
+	@Transactional
 	public boolean delete(String id) {
 		try {
 			sessionFactory.getCurrentSession().delete(getCartByID(id));
@@ -127,13 +147,13 @@ public class CartDAOImpl implements CartDAO {
 
 	@Override
 	public MyCart getCartByID(String id) {
-		//select * from Category where id ='mobile'
-		//  return	(Category)  sessionFactory.getCurrentSession().get(Category.class, id);
-		  
-		  return  (MyCart) sessionFactory.getCurrentSession().createQuery("from MyCart where id = '"+id + "'").uniqueResult();
-			
-		}
+		// select * from Category where id ='mobile'
+		// return (Category)
+		// sessionFactory.getCurrentSession().get(Category.class, id);
+
+		return (MyCart) sessionFactory.getCurrentSession().createQuery("from MyCart where id = '" + id + "'")
+				.uniqueResult();
+
 	}
 
-
-
+}
